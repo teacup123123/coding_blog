@@ -3,5 +3,6 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
+permalink: /about/
 ---
 Welcome I will be putting my projects on this blog
