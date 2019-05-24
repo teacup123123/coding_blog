@@ -1,5 +1,14 @@
 ---
 
 ---
+<ul>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
 {{ site.posts }}
-{{ site.categories.CATEGORY }}
+#{{ site.categories.CATEGORY }}
+
