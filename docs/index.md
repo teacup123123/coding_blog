@@ -10,7 +10,3 @@ layout:default
     </li>
   {% endfor %}
 </ul>
-
-{{ site.posts }}
-#{{ site.categories.CATEGORY }}
-
