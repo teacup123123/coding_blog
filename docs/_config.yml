@@ -4,4 +4,6 @@ description: A blog about random projects cooked up on the whim! Music/Coding co
 show_downloads: false
 google_analytics:
 theme: jekyll-theme-minimal
-permalink: /:categories/:year/:month/:day/:title:output_ext
+
+markdown: kramdown
+permalink: /:year/:title:output_ext
