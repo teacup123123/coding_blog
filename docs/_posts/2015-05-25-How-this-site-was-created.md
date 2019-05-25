@@ -4,15 +4,15 @@ title: How this site was created under Ubuntu
 author: Tikai Chang
 tags: [web, jekyll, "Hello world!"]
 ---
-How this site was created under Ubuntu:
-1. Follow the instructions <a href="{{ post.url }}">here</a>, notably the steps *Requirements*, *Step 2* and *Step 3*
+How this site was created under Ubuntu: 
+1. Follow the instructions [here]({ post.url }}), notably the steps *Requirements*, *Step 2* and *Step 3*
 
 2. errors were encountered during the `bundle install` and it's post-install verification
 	1. *commonmarker*
 	2. *nokogiri*
 	3. querying the version of *jekyll* with `jekyll -v`
 
-3. Use of the theme <a href ="https://github.com/pages-themes/minimal">*minimal* </a>, supported by github pages and, the key is to copy the `_layout` files for things to work, especially `default.html`.
+3. Use of the theme [minimal](https://github.com/pages-themes/minimal), supported by github pages and, the key is to copy the `_layout` files for things to work, especially `default.html`.
 
 4. `bundle exec jekyll serve` and enjoy!
 
@@ -53,7 +53,7 @@ In Gemfile:
 	nokogiri
 ```
 
-Solved according to <a href="https://github.com/flapjack/omnibus-flapjack/issues/72">this page</a>, by installing `zlib1g-dev `(used synaptic package manager but could have used `apt-get install`)
+Solved according to [this page](https://github.com/flapjack/omnibus-flapjack/issues/72], by installing `zlib1g-dev `(used synaptic package manager but could have used `apt-get install`)
 
 *nokogiri* was installed seperately via `sudo gem install nokogiri` instead of the `bundle install`
 
@@ -77,7 +77,7 @@ Traceback (most recent call last):
 /usr/lib/ruby/vendor_ruby/bundler/lockfile_parser.rb:108:in `warn_for_outdated_bundler_version': You must use Bundler 2 or greater with this lockfile. (Bundler::LockfileError)
 ```
 
-according to the reply by *DirtyF* in <a href ="https://github.com/jekyll/jekyll/issues/7463">this post</a>
+according to the reply by *DirtyF* in [this post](https://github.com/jekyll/jekyll/issues/7463)
 These steps did the trick:
 1. update Rubygems using `gem update --system`
 2. update bundler using `gem install bundler`
