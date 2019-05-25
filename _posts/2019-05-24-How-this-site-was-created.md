@@ -5,7 +5,7 @@ author: Tikai Chang
 tags: [web, jekyll, "Hello world!"]
 ---
 How this site was created under Ubuntu: 
-1. Follow the instructions [here]({ post.url }}), notably the steps *Requirements*, *Step 2* and *Step 3*
+1. Follow the instructions [here](https://help.github.com/en/articles/setting-up-your-github-pages-site-locally-with-jekyll), notably the steps *Requirements*, *Step 2* and *Step 3*
 
 2. errors were encountered during the `bundle install` and it's post-install verification
 	1. *commonmarker*
