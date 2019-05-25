@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How this site was created under Ubuntu
+title: How this site was created via Jekyll/github-pages under Ubuntu
 author: Tikai Chang
 tags: [web, jekyll, "Hello world!"]
 ---

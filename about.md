@@ -13,7 +13,8 @@ I personally have the problem of looking random things up. Things are learnt, an
    How to make music using information processing learnt in physics/music theory/
 2. Coding contests
    In order to prepare for future tech company interviews, I'll write full resolution of coding contest problems, starting with Google Code Jam.
-3. Games
+3. Games Development
+   Unfortunately this is very very time consuming and requires multiple talents (art/music/literary). Will be doing this only when I am bored to death
    TBD
 
 Now, let's [read on]({{ "/" | absolute_url }})
