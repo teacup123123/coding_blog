@@ -54,7 +54,7 @@ There are at most so many too because between two tie-breaking fractions the ord
 
 ### Live coding during contest (Time Limit Exceeded for hard case)
 
-The outer-most for loop is just repetition, of no particular interest but to test different edge cases whatever that is... Please see [the original problem](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051679/0000000000146183), as well as the general structure of Google Code Jam Questions.
+{% include GCJ_caseT.html %}
 
 
 ```python
