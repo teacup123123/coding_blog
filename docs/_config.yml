@@ -8,4 +8,4 @@ markdown: kramdown
 theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
-permalink: /blog/:year/:month/:day/:title
+permalink: pretty
