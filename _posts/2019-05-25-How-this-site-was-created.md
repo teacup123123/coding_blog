@@ -92,3 +92,7 @@ Then point the `theme` to `minima` in the `_config.yaml` file
 ## Test and upload
 To test locally: `bundle exec jekyll serve`
 Otherwise upload(push) final product to github pages, in my case I used the `docs` folder in my github root (adjustable in project settings)
+
+## Finally, as a bonus, Latex
+Following [this](https://xuc.me/blog/katex-and-jekyll/) post, here is a little sample:
+The inline code snippet `$$\alpha \in \beta $$` renders to $$\alpha \in \beta $$.

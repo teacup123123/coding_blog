@@ -5,6 +5,8 @@ github_username:  teacup123123
 
 # Build settings
 markdown: kramdown
+kramdown:
+  math_engine: mathjax
 theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
