@@ -14,7 +14,7 @@ layout: default
 		</a>
 		<p> | Posted {{ post.date | date_to_string }} | <b>Tags</b>:
 			{% for tag in post.tags %}
-				<i>{{tag}}</i>
+				<i>{{tag}}</i> , 
 			{% endfor %}
 		</p>
 	</div>
