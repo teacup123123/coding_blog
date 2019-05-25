@@ -8,7 +8,7 @@ layout: default
 ## Latest blog posts:
 <div>
 {% for post in site.posts %}
-  <a href="{{ post.url }}">
+  <a href="{{ post.url | relative_url }}">
     <h3> - {{ post.title }}</h3>
     <p>{{ post.date | date_to_string }}</p>
   </a>
