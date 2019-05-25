@@ -5,12 +5,18 @@
 layout: default
 ---
 
-## Latest blog posts:
+## Latest blog posts
 <div>
 {% for post in site.posts %}
-  <a href="{{ post.url | relative_url }}">
-    <h3> - {{ post.title }}</h3>
-    <p>{{ post.date | date_to_string }}</p>
-  </a>
+	<div>
+		<a href="{{ post.url | relative_url }}">
+			<h3>{{ post.title }}</h3>
+		</a>
+		<p> | Posted {{ post.date | date_to_string }} | <b>Tags</b>:
+			{% for tag in post.tags %}
+				<i>{{tag}}</i>
+			{% endfor %}
+		</p>
+	</div>
 {% endfor %}
 </div>

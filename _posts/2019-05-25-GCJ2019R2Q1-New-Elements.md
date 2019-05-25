@@ -26,11 +26,14 @@ In the easy case *[resp. hard]*, there are at least N = 2 molecules/compounds, a
 L = [(c,j)...] #c>0,j>0
 
 # wc, wj are weights of codium and jamarium 
-# we sort the list according to the total weight, key is the comparator function
-L_sorted(wc,wj) = sorted(L, key = c*wc+j*wj for (c,j) in L)
+# sort the list according to the total weight
+# "key=" designates the comparator function
+L_sorted(wc,wj) = sorted(L
+	, key = c*wc+j*wj for (c,j) in L)
 
 # Determine the number of possible orders
-answer = len({L_sorted(wc,wj) for all wc,wj >0 / such that there are no ties of weights})
+answer = len({L_sorted(wc,wj), 
+	for all wc,wj > 0, s.t. no ties})
 ```
 ### Reflection during the contest
 
@@ -44,11 +47,11 @@ There are at most N! types of orderings (number of permutations of length N).
 The pertinent question is, when in the *weight space* does the order change?
 This *change* occurs when at least two molecules in the list enters a tie. For example (1,2) and (2,1), corresponding to $$\left[C_1J_2,C_2J_1\right]$$ contains a tie at $$(wc,wj) = (1,1)$$
 
-How did this happen? well $$(1,1)\cdot(1,2) = (1,1)\cdot(2,1)$$ (Denotes [inner product](https://en.wikipedia.org/wiki/Dot_product)). In other words  $$(1,1)\cdot\left((1,2)-(2,1)\right) = 0$$. Note that a tie (e.g. (1,1)) automatically implies that any multiple of this tuple (e.g. (5,5) ) is also a tie-generating weight-tuple.
+How did this happen? well $$(1,1)\cdot(1,2) = (1,1)\cdot(2,1)$$ ($$\cdot$$Denotes [inner product](https://en.wikipedia.org/wiki/Dot_product)). In other words  $$(1,1)\cdot\left((1,2)-(2,1)\right) = 0$$. Note that a tie (e.g. (1,1)) automatically implies that any multiple of this tuple (e.g. (5,5) ) is also a tie-generating weight-tuple.
 
 This gives us an inspiration for an algorithm that could work: count the number of boundaries (straight lines) in the weight space that generates ties. Any point in weight space can be mapped to a fraction in the rational number space $$Q$$: 1/1 = 5/5 = 4/4.
 
-Since the $$Q$$ is [dense](https://en.wikipedia.org/wiki/Dense_set), any two fractional numbers are bound to have another in between, any one number there is another one arbitrarily (infinitesimally) smaller or bigger. Therefore between any two tie-generating weight tuple, we have another weight tuple which un-breaks the tie. Since two (or more) elements that enters the tie changed their relative position with respect to each other at the the unique tie position, there are at least (the number of tie-conditions) + 1 different orders (two separators seperates three books!)
+Since $$Q$$ is [dense](https://en.wikipedia.org/wiki/Dense_set), any two fractional numbers are bound to have another in between, any one number there is another one arbitrarily (infinitesimally) smaller or bigger. Therefore between any two tie-generating weight-tuples, we have another weight-tuple which un-breaks the tie. Since two (or more) elements that enters the tie changed their relative position with respect to each other at this very unique tie position, there are at least (the number of tie-conditions) + 1 different orders (two separators seperates three books!), and all such generated orders are distinct!
 
 There are at most so many too because between two tie-breaking fractions the order remains the same!
 
@@ -86,7 +89,7 @@ I would have thought that the overall complexity is 300 x 300 even in the hard c
 
 Since it is based over a hash set, the size grows from 0 to 90000 dynamically, requiring rehash I guess...
 
-### Correct code after
+### Correct code after the contest
 
 Line 13-L19, correction:
 ```python
