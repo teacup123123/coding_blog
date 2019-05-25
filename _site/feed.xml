@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-05-25T18:58:22+03:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Be My Rubber Duck by Titicat</title><subtitle>Blog about projects cooked up on the whim! Music/Coding contests/Games</subtitle><entry><title type="html">How this site was created under Ubuntu</title><link href="http://localhost:4000/2015/05/25/How-this-site-was-created.html" rel="alternate" type="text/html" title="How this site was created under Ubuntu" /><published>2015-05-25T00:00:00+03:00</published><updated>2015-05-25T00:00:00+03:00</updated><id>http://localhost:4000/2015/05/25/How-this-site-was-created</id><content type="html" xml:base="http://localhost:4000/2015/05/25/How-this-site-was-created.html">&lt;p&gt;How this site was created under Ubuntu:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Follow the instructions &lt;a href=&quot;{ post.url }}&quot;&gt;here&lt;/a&gt;, notably the steps &lt;em&gt;Requirements&lt;/em&gt;, &lt;em&gt;Step 2&lt;/em&gt; and &lt;em&gt;Step 3&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;errors were encountered during the &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; and it’s post-install verification
+    &lt;ol&gt;
+      &lt;li&gt;&lt;em&gt;commonmarker&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;nokogiri&lt;/em&gt;&lt;/li&gt;
+      &lt;li&gt;querying the version of &lt;em&gt;jekyll&lt;/em&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll -v&lt;/code&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Use of the theme &lt;a href=&quot;https://github.com/pages-themes/minimal&quot;&gt;minimal&lt;/a&gt;, supported by github pages and, the key is to copy the &lt;code class=&quot;highlighter-rouge&quot;&gt;_layout&lt;/code&gt; files for things to work, especially &lt;code class=&quot;highlighter-rouge&quot;&gt;default.html&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; and enjoy!&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;problems-and-solutions-after-some-googling&quot;&gt;problems and solutions after some googling&lt;/h2&gt;
+&lt;p&gt;In the following the dependencies were solved and then the command &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle install&lt;/code&gt; rerun.&lt;/p&gt;
+
+&lt;h3 id=&quot;commonmarker-problem&quot;&gt;commonmarker problem:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Installing commonmarker 0.17.13 with native extensions
+Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+...
+mkmf.rb can't find header files for ruby at /usr/lib/ruby/include/ruby.h
+...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Solved using &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo apt-get install ruby2.5-dev&lt;/code&gt;, (replace 2.5 by appropriate version)&lt;/p&gt;
+
+&lt;h3 id=&quot;nokogiri-problem&quot;&gt;nokogiri problem:&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Fetching nokogiri 1.10.3
+Installing nokogiri 1.10.3 with native extensions
+Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+
+...
+...
+An error occurred while installing nokogiri (1.10.3), and Bundler
+cannot continue.
+Make sure that `gem install nokogiri -v '1.10.3' --source
+'https://rubygems.org/'` succeeds before bundling.
+
+In Gemfile:
+  github-pages was resolved to 198, which depends on
+    jekyll-mentions was resolved to 1.4.1, which depends on
+      html-pipeline was resolved to 2.11.0, which depends on
+	nokogiri
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Solved according to [this page](https://github.com/flapjack/omnibus-flapjack/issues/72], by installing &lt;code class=&quot;highlighter-rouge&quot;&gt;zlib1g-dev &lt;/code&gt;(used synaptic package manager but could have used &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get install&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;nokogiri&lt;/em&gt; was installed seperately via &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gem install nokogiri&lt;/code&gt; instead of the &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle install&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;jekyll--v-not-working&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll -v&lt;/code&gt; not working&lt;/h3&gt;
+&lt;p&gt;This is the command to see the jekyll version. The error when querying it gave:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Traceback (most recent call last):
+	13: from /usr/local/bin/jekyll:23:in `&amp;lt;main&amp;gt;'
+	12: from /usr/local/bin/jekyll:23:in `load'
+	11: from /var/lib/gems/2.5.0/gems/jekyll-3.8.5/exe/jekyll:11:in `&amp;lt;top (required)&amp;gt;'
+	10: from /var/lib/gems/2.5.0/gems/jekyll-3.8.5/lib/jekyll/plugin_manager.rb:50:in `require_from_bundler'
+	 9: from /usr/lib/ruby/vendor_ruby/bundler.rb:101:in `setup'
+	 8: from /usr/lib/ruby/vendor_ruby/bundler.rb:135:in `definition'
+	 7: from /usr/lib/ruby/vendor_ruby/bundler/definition.rb:35:in `build'
+	 6: from /usr/lib/ruby/vendor_ruby/bundler/dsl.rb:13:in `evaluate'
+	 5: from /usr/lib/ruby/vendor_ruby/bundler/dsl.rb:218:in `to_definition'
+	 4: from /usr/lib/ruby/vendor_ruby/bundler/dsl.rb:218:in `new'
+	 3: from /usr/lib/ruby/vendor_ruby/bundler/definition.rb:83:in `initialize'
+	 2: from /usr/lib/ruby/vendor_ruby/bundler/definition.rb:83:in `new'
+	 1: from /usr/lib/ruby/vendor_ruby/bundler/lockfile_parser.rb:95:in `initialize'
+/usr/lib/ruby/vendor_ruby/bundler/lockfile_parser.rb:108:in `warn_for_outdated_bundler_version': You must use Bundler 2 or greater with this lockfile. (Bundler::LockfileError)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;according to the reply by &lt;em&gt;DirtyF&lt;/em&gt; in &lt;a href=&quot;https://github.com/jekyll/jekyll/issues/7463&quot;&gt;this post&lt;/a&gt;
+These steps did the trick:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;update Rubygems using &lt;code class=&quot;highlighter-rouge&quot;&gt;gem update --system&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;update bundler using &lt;code class=&quot;highlighter-rouge&quot;&gt;gem install bundler&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;update Gemfile.lock in your project using &lt;code class=&quot;highlighter-rouge&quot;&gt;bundler update --bundler&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Worked wonders!&lt;/p&gt;
+
+&lt;h2 id=&quot;adjust-gemfile-and-_configyaml&quot;&gt;Adjust Gemfile and _config.yaml&lt;/h2&gt;
+&lt;p&gt;Apparently the line &lt;code class=&quot;highlighter-rouge&quot;&gt;gem &quot;github-pages&quot;, group: :jekyll_plugins&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; is required to test on a local server. I suppose it installs the theme-files by itself.
+Then point the &lt;code class=&quot;highlighter-rouge&quot;&gt;theme&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;minima&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yaml&lt;/code&gt; file&lt;/p&gt;
+
+&lt;h2 id=&quot;test-and-upload&quot;&gt;Test and upload&lt;/h2&gt;
+&lt;p&gt;To test locally: &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt;
+Otherwise upload(push) final product to github pages, in my case I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;docs&lt;/code&gt; folder in my github root (adjustable in project settings)&lt;/p&gt;</content><author><name>Tikai Chang</name></author><category term="web" /><category term="jekyll" /><category term="Hello world!" /><summary type="html">How this site was created under Ubuntu: Follow the instructions here, notably the steps Requirements, Step 2 and Step 3</summary></entry></feed>
