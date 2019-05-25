@@ -49,11 +49,9 @@ This *change* occurs when at least two molecules in the list enters a tie. For e
 
 How did this happen? well $$(1,1)\cdot(1,2) = (1,1)\cdot(2,1)$$ ($$\cdot$$Denotes [inner product](https://en.wikipedia.org/wiki/Dot_product)). In other words  $$(1,1)\cdot\left((1,2)-(2,1)\right) = 0$$. Note that a tie (e.g. (1,1)) automatically implies that any multiple of this tuple (e.g. (5,5) ) is also a tie-generating weight-tuple.
 
-This gives us an inspiration for an algorithm that could work: count the number of boundaries (straight lines) in the weight space that generates ties. Any point in weight space can be mapped to a fraction in the rational number space $$Q$$: 1/1 = 5/5 = 4/4.
+This gives us an inspiration for an algorithm that could work: count the number of boundaries (straight lines) in the weight-space by iterating over compund space-pairs and computing a tie-generating weight pair such that $$(wc,wj)\cdot(\Delta c,\Delta j) = 0$$ (Here $$\Delta$$ means difference). Any point in weight space can be mapped to a fraction in the rational number space $$Q$$: 1/1 = 5/5 = 4/4.
 
-Since $$Q$$ is [dense](https://en.wikipedia.org/wiki/Dense_set), any two fractional numbers are bound to have another in between, any one number there is another one arbitrarily (infinitesimally) smaller or bigger. Therefore between any two tie-generating weight-tuples, we have another weight-tuple which un-breaks the tie. Since two (or more) elements that enters the tie changed their relative position with respect to each other at this very unique tie position, there are at least (the number of tie-conditions) + 1 different orders (two separators seperates three books!), and all such generated orders are distinct!
-
-There are at most so many too because between two tie-breaking fractions the order remains the same!
+Since $$Q$$ is [dense](https://en.wikipedia.org/wiki/Dense_set), any two fractional numbers are bound to have another one in between. Any one number has another arbitrarily (infinitesimally) close, smaller or bigger neighbor. Therefore between any *two* neighboring tie-generating weight-tuples (we can consider 0/1 and 1/0 = +Inf as invisible boundary tuples that are always present), we can always find one weight-tuple in between which un-breaks both ties. By the definition of *neighboring* and the *finiteness* of boundaries ( &#60; 2^N ) there cannot be any ties for this weight-tuple in between, and the generated ordering will be legal (strictly increasing). Since two (or more) elements that enter a tie changed their relative position with respect to each other at this very unique weight-tuple [equivalent class](https://en.wikipedia.org/wiki/Equivalence_class) (1/1 = 2/2 = 3/3...), there are at least **(the number of tie-conditions) + 1** different orders (two separators seperates three books!), and all such generated orders are distinct! There are also at most so many too because between two tie-breaking fractions the order remains the same (def of neighboring)!
 
 ### Live coding during contest (Time Limit Exceeded for hard case)
 
@@ -103,4 +101,4 @@ Line 13-L19, correction:
     node = set(node)
 ```
 
-This solved the TLE problem. We first just generate a list of maximum size 90000, then we convert it into a set in one go. The size of the hashtable will thus be decided and hashing/resizing is done only once.
+This solved the TLE problem. We first just generate a list of maximum size 90000, then we convert it into a set in one go. The size of the hashtable will thus be decided at the end and hashing/resizing is done only once.
