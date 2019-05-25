@@ -3,6 +3,7 @@ layout: post
 title: "Google Code Jam 2019 Round 2 Q1: New Elements"
 author: Tikai Chang
 tags: ["GCJ", "competition", "python"]
+comments: true
 ---
 
 The original question statement is [here](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051679/0000000000146183)
