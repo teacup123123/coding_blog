@@ -24,4 +24,4 @@ kramdown:
 
 theme: jekyll-theme-minimal
 plugins: [jekyll-feed, jekyll-paginate]
-paginate: 1
+paginate: 5
