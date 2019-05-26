@@ -22,7 +22,5 @@ kramdown:
       start_line: 1
 
 theme: jekyll-theme-minimal
-plugins:
-  - jekyll-feed
-
-
+plugins: [jekyll-feed, jekyll-paginate]
+paginate: 1
