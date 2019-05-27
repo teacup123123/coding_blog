@@ -109,6 +109,38 @@ for i in range(300*300*300*9*9):
     pass
 ```
 took me like a few minutes...
-You can't really generalize this to 2D, because the step `beGreedier()` can be interpreted as expand `y_end` or expand `x_end` as in `if stillValid(): beGreedy()`. These kind of binary choice is typical of entering the realm of NP branching...
+You can't really generalize this to 2D, because the step `beGreedier()` can be interpreted as expand `y_end` or expand `x_end` as in `if stillValid(): beGreedy()`. These kind of binary choice is typical of entering the realm of NP expontial branching...
 
-#### To be continued
+Or so I thought..., it occured to me that this caterpiller parcours all locally maximal y-ranges for fixed x-ranges. The caterpiller doesn'y care about the achieved size of the rectangle.
+
+Maybe we could define jumps of the caterpiller... if a rectangle of size S was already discovered, nothing to lose by skipping over smaller tries. Nope that doesn't really work, because now the caterpiller might find itseld stuck in a local minimum, not being able to shrink to rebound :(
+
+Another idea flashed, if we have no choice but to bruteforce the y-ranges, maybe we could use the same philosophy on the x-ranges, but considering the size obtained...
+
+Ha I thought about what I call a Fermi Energy Level method:
+
+```python
+
+for sizeGoal in decotomy():
+  x_start,x_end = 0,1
+  deltaY = caterpillerOnY(x_start,x_end)
+  #returns the best Y interval given an x interval
+  size = deltaY*(x_end-y_end)
+  if size>=sizeGoal:
+    #it was too easy, let's become greedier
+    x_end+=1
+  else:
+    # too bad, we should relax the bruteforce
+    x_start+=1
+```
+
+That will work! Total complexity now is `log(1000)*300*300*log(300)^2 = `
+
+```python
+for i in range(300*300*10*8):
+    pass
+```
+
+Mhua ha ha!!!! Instantaneous for me, a mere human!
+
+#### Implementation coming up!
