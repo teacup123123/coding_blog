@@ -134,13 +134,13 @@ for sizeGoal in decotomy():
     x_start+=1
 ```
 
-That will work! Total complexity now is `log(1000)*300*300*log(300)^2 = `
+That will work! Total complexity now is `log(1000)*300*300*log(300)^2 = 300*300*10*9*9`
 
 ```python
-for i in range(300*300*10*8):
+for i in range(300*300*10*9*9):
     pass
 ```
 
-Mhua ha ha!!!! Instantaneous for me, a mere human!
+Took 4 seconds! That should do the job!
 
 #### Implementation coming up!
