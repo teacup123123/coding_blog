@@ -44,7 +44,7 @@ The idea is to precache queries of size 2^t, The answer from the query of two co
 - we combine the results from these lookups
 Since there are at most log N lookups, that is the time complexity
 
-However, this problem is a 3D problem. And maybe that is not the same as a simple range-min query over 1D? Is there anything we can borrow?
+However, this problem is a 2D problem. And maybe that is not the same as a simple range-min query over 1D? Is there anything we can borrow?
 
 Well, the two dimensions are not independent: observe in the following case:
 ```
