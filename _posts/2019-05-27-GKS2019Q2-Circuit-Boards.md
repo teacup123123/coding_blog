@@ -96,12 +96,12 @@ for x_start in range(300):
       if ystart == 301:
         break
 ```
-This catepiller movement of y_start and y_end is so cute :D.
+This catepiller movement of `y_start` and `y_end` is so cute :D.
 We know for sure that the catepiller can only move forward, so the complexity is N for this while loop. giving a complexity of N^3. The question is will this caterpiller go over all valid configs?
 
 Say the optimal config is [A~B]x[C~D]
 A and B are bruteforcefully covered
-At a certain moment, y_start *is going to become C*, by a rightward movement from y_start = C-1. If y_end is left of D, it will now advance until it works, never becoming too big in the process so as to necessite shifting of y_start. Is it possible that y_end is already right of D? Well in that case going back to the moment when y_end just became D, y_start must be on the left of C, since that event happened afterwards! And so y_start will keep on advancing because it stays invalid until it hits that C, *otherwise, violation of optimality*!
+At a certain moment, `y_start` *is going to become C*, by a rightward movement from y_start = C-1. If `y_end` is left of D, it will now advance until it works, never becoming too big in the process so as to necessite shifting of `y_start`. Is it possible that `y_end` is already right of D? Well in that case going back to the moment when `y_end` just became D, `y_start` must be on the left of C, since that event happened afterwards! And so `y_start` will keep on advancing because it stays invalid until it hits that C, *otherwise, violation of optimality*!
 
 Now that is a whooping N increase, but still,
 ```python
@@ -109,6 +109,6 @@ for i in range(300*300*300*9*9):
     pass
 ```
 took me like a few minutes...
-hmmm
+You can't really generalize this to 2D, because the step `beGreedier()` can be interpreted as expand `y_end` or expand `x_end` as in `if stillValid(): beGreedy()`. These kind of binary choice is typical of entering the realm of NP branching...
 
 #### To be continued
