@@ -29,8 +29,8 @@ Please find the largest possible area obtainable from a valid subcircuit board.
 
 #### limits
 
-R,C between 1~N=300
-Thickness integer in 0~1000
+R,C between N=1 to 300
+Thickness integer in 0 to 1000
 
 ### Reflection
 
