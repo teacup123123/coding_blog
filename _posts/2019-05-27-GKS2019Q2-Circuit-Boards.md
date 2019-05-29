@@ -30,8 +30,8 @@ Please find the largest possible area obtainable from a valid subcircuit board.
 
 #### limits
 
-R,C between 1~N=300
-Thickness integer in 0~1000
+R,C between N=1 to 300
+Thickness integer in 0 to 1000
 
 ### Reflection
 
@@ -65,7 +65,7 @@ but it is hard to say anything about min(AC) and min(CD)...
 So I get the feeling that the loops in the horizontal direction must always be present... Brute force would take N^2 to decide the two x-boundaries, N^2 for the y-boundaries, N^2 to iterate over all cells within. That is a whooping N^6 = 723000000000000 iterations...
 
 Well, we can first think about the 2D-query of a min-range-2D. By caching all sizes of 2^I-by-2^J rectangles, we can make a 2D version of the 1D rangemin algo.
-The maximum number of Squares in the rectangle would be logN x logN. So if we iterate over all boundaries with this method, it will become N^4 log(N)^2 = 8100000000*81 = 656100000000~10^12 still too big... The precaching will take N^2 log(N) - negligeable in front of the lookup.
+The maximum number of subrectangles in the rectangle would be logN x logN. So if we iterate over all boundaries with this method, it will become N^4 log(N)^2 = 8100000000*81 = 656100000000~10^12 still too big... The precaching will take N^2 log(N)^2 - negligeable in front of the lookup.
 
 The skeleton would be something like this:
 
@@ -85,16 +85,16 @@ Then I remembered this [video](https://www.youtube.com/watch?v=XKu_SEDAykw). And
 for x_start in range(300):
   for x_end in range(300):
     while notBreaked:
-      ystart = 0
-      yend = 1 # not included
+      y_start = 0
+      y_end = 1 # not included
       res = doThe2DLog300Lookup(x_start,x_end,y_start,y_end)
       if res.valid:
         #too easy to verify with a small subrect, make it bigger!
-        yend+=1
+        y_end+=1
       else:
         #a bit too big...
-        ystart+=1
-      if ystart == 301:
+        y_start+=1
+      if y_start == 301:
         break
 ```
 This catepiller movement of `y_start` and `y_end` is so cute :D.
