@@ -3,10 +3,23 @@ layout: default
 comments: true
 ---
 
-<small>{{ page.date | date: "%-d %B %Y" }}</small>
+<small>{{ page.date | date: "%-d %B %Y" }}
+by {{ page.author | default: site.author }}</small>
 <h1>{{ page.title }}</h1>
 
-<p class="view">by {{ page.author | default: site.author }}</p>
+
+<p class="view">
+  Status:
+  {% if page.status == "hold" %}
+  <b>question/project put on hold</b>
+  <img src="{{ "/assets/img/clock.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+  {% elsif page.status == 'done' %}
+  <b>question/project completed</b>
+  <img src="{{ "/assets/img/checked.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+  {% elsif page.status == 'working' %}
+  <b>workin' on it</b>
+  <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+  {% endif %}</p>
 
 {{content}}
 
