@@ -11,7 +11,15 @@ Latest blog posts
 {% for post in paginator.posts %}
 <div>
   <a href="{{ post.url | relative_url }}">
-    <h3>{{ post.title }}</h3>
+    <h3>{{ post.title }}
+      {% if post.status == "hold" %}
+      <img src="{{ "/assets/img/clock.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+      {% elsif post.status == 'done' %}
+      <img src="{{ "/assets/img/checked.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+      {% elsif post.status == 'working' %}
+      <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+      {% endif %}
+    </h3>
   </a>
   <p> | Posted {{ post.date | date_to_string }} | <b>Tags</b>:
     {% for tag in post.tags %}

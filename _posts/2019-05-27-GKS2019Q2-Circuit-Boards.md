@@ -4,6 +4,7 @@ title: "Google Kick Start 2019 Round C Q2 Circuit Boards"
 author: Tikai Chang
 tags: ["GKS", "competition", "python"]
 comments: true
+status: "working"
 ---
 
 The original question statement is [here](https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aae)

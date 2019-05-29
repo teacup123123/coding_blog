@@ -4,6 +4,7 @@ title: "Google Code Jam 2019 Round 2 Q1: New Elements"
 author: Tikai Chang
 tags: ["GCJ", "competition", "python"]
 comments: true
+status: "done"
 ---
 
 The original question statement is [here](https://codingcompetitions.withgoogle.com/codejam/round/0000000000051679/0000000000146183)
@@ -19,21 +20,21 @@ For example, you have synthesized $$\left[C_1J_2,C_2J_1\right]$$.
 
 In total there are **two** possible orders, and you should answer: 2.
 
-In the easy case *[resp. hard]*, there are at least N = 2 molecules/compounds, and at most and 6 *[resp. 300]*. In each compound, there are at most 10^9 Codium and Jamarium respectively. 
+In the easy case *[resp. hard]*, there are at least N = 2 molecules/compounds, and at most and 6 *[resp. 300]*. In each compound, there are at most 10^9 Codium and Jamarium respectively.
 
 ### Reformulating the problem
 ```
 #Let L be a list of all detected formulas
 L = [(c,j)...] #c>0,j>0
 
-# wc, wj are weights of codium and jamarium 
+# wc, wj are weights of codium and jamarium
 # sort the list according to the total weight
 # "key=" designates the comparator function
 L_sorted(wc,wj) = sorted(L
 	, key = c*wc+j*wj for (c,j) in L)
 
 # Determine the number of possible orders
-answer = len({L_sorted(wc,wj), 
+answer = len({L_sorted(wc,wj),
 	for all wc,wj > 0, s.t. no ties})
 ```
 ### Reflection during the contest
@@ -44,7 +45,7 @@ Take an example, $$C_1J_2$$ corresponds to (1,2) on the 2D *compound space*.
 In the same manner in the *weight space*, (wc,wj) can also be plotted in 2D.
 
 There are at most N! types of orderings (number of permutations of length N).
- 
+
 The pertinent question is, when in the *weight space* does the order change?
 This *change* occurs when at least two molecules in the list enters a tie. For example (1,2) and (2,1), corresponding to $$\left[C_1J_2,C_2J_1\right]$$ contains a tie at $$(wc,wj) = (1,1)$$
 
