@@ -135,13 +135,111 @@ for sizeGoal in decotomy():
     x_start+=1
 ```
 
-That will work! Total complexity now is `log(1000)*300*300*log(300)^2 = 300*300*10*9*9`
+That will work! Total complexity now is `log(300*300)*300*300*log(300)^2 = 300*300*18*9*9`
 
 ```python
-for i in range(300*300*10*9*9):
+for i in range(300*300*18*9*9):
     pass
 ```
 
-Took 4 seconds! That should do the job!
+Took 8 seconds! That should do the job!
+### Implementation
 
-#### Implementation coming up!
+Here is the code so far.
+```python
+import numpy as np
+import itertools
+
+# dechotomy over a size goal,
+# lower and higher are always returned as signaler functions
+def dechotomy(sizeGoal):
+    low, high = 0, sizeGoal
+
+    def higher():
+        global low
+        low = mid
+
+    def lower():
+        global high
+        high = mid
+
+    while True:
+        mid = (low + high) // 2
+        return mid, lower, higher
+
+# main contest body
+t = int(input())
+for ti in range(1, t + 1):
+    r, c, k = tuple(map(int, input().split()))
+    grid = []
+    for ri in range(r):
+        grid.append(list(map(int, input().split())))
+    grid = np.array(grid, dtype=int)
+    # variables now all loaded
+
+    #dynamical program used to precalculate lookups of size 2^I x 2^J
+    _ = []
+    for operation in [np.max, np.min]:
+        precache_max_or_min = np.zeros((r, c, 9, 9), dtype=int)
+        precache_max_or_min[:, :, 0, 0] = grid
+        for i in range(8):
+            for j in range(8):
+                temp = np.zeros((r, c, 2), dtype=int)
+                temp[:, :, 0] = precache_max_or_min[:, :, i, j]
+                temp[:, :, 1] = \
+                np.roll(precache_max_or_min[:, :, i, j], -2 ** j, axis=1)
+                temp = operation(temp, axis=2)
+                precache_max_or_min[:, :, i, j + 1] = temp
+            temp = np.zeros((r, c, 2, 9), dtype=int)
+            temp[:, :, 0, :] = precache_max_or_min[:, :, i, :]
+            temp[:, :, 1, :] = \
+            np.roll(precache_max_or_min[:, :, i, :], -2 ** i, axis=0)
+            temp = operation(temp, axis=2)
+            precache_max_or_min[:, :, i + 1, :] = temp
+        _.append(precache_max_or_min)
+    precache_max, precache_min = _
+
+    # The actual lookup for any sizes
+    def lookup(xlow, xhigh, ylow, yhigh):
+        szx = xhigh - xlow
+        szy = yhigh - ylow
+        collectedx = []
+        collectedy = []
+        while szx > 0:
+            collectedx.append(szx % 2)
+            szx = szx // 2
+        while szy > 0:
+            collectedy.append(szy % 2)
+            szy = szy // 2
+
+        sublookupx = []
+        sublookupy = []
+        cursor = 0
+        for xi, x in enumerate(collectedx):
+            if x == 1:
+                sublookupx.append((cursor, xi))
+                cursor += 2 ** xi
+        cursor = 0
+        for yi, y in enumerate(collectedy):
+            if y == 1:
+                sublookupy.append((cursor, yi))
+                cursor += 2 ** yi
+        minFound,maxFound = grid[xlow,ylow],grid[xlow,ylow]
+        for (x, xi), (y, yi) in itertools.product(sublookupx, sublookupy):
+            maxFound = max(maxFound, precache_max[x, y, xi, yi])
+            minFound = min(minFound, precache_min[x, y, xi, yi])
+        if minFound+k>=maxFound:
+            return True
+        else:
+            return False
+
+
+    for sz, lower, higher in dechotomy(r * c):
+        xlow, xhigh = 0, 1
+        ylow, yhigh = 0, 1
+        found = None
+        # double caterpiller to be continued
+
+    answer = ''
+    print('Case #{}: {}'.format(ti, answer))
+```

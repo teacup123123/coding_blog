@@ -2,3 +2,13 @@
 ---
 
 @import "jekyll-theme-minimal";
+
+.wrapper {
+  width:90%;
+  margin:0 auto;
+}
+section {
+  width:70%;
+  float:right;
+  padding-bottom:50px;
+}
