@@ -11,7 +11,7 @@ Browsing the web, something occured to me.
 I am about to start a blog about making music, and so one key ingredient is rendering musical notation on the fly.
 The slow way will be to open up the music-editing software (MuseScore), and then somehow capture or export the images for use in web.
 
-I think the main question will be, what will be more natural for me as a blogger, will it be bloggability (ascii-readability/ascii-writability) or direct visualization of the music? I don't have an answer to this question.
+I think the main question will be, what will be more natural for me as a blogger, will it be bloggability (ascii-readability/ascii-writability) or direct visualization or even hearability of the music? I don't have an answer to this question.
 
 Thinking about the first bloggability aspect, I did a little bit of googling and found that there's this tool called
 [Vexflow](http://www.vexflow.com/) which does in-browser rendering of sheet music
@@ -62,13 +62,13 @@ I messed around and found [this demo](https://opensheetmusicdisplay.github.io/de
 
 So if you want to dwelve into how it was done. basically I digged into their [wiki-page](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/wiki)
 
-So the coding style that I settled upon is the following liquid syntax
+So the coding style that I settled upon is the following liquid syntax (note the two small spaces there between `{` , resp. `}`, and `%` otherwise liquid will indeed include the contents... XD)
 
 ```
-{% include stubmusic.html
+{ % include stubmusic.html
   src = "190531-zz/Zettai_Zetsumei_by_Coe_shu_Nie.xml"
   zoom = 0.2
-  %}
+  % };
 ```
 So I will keep all the music-xml files in a visible-data folder, and the included html snippet will be in charge of formatting the source file url correctly.
 
@@ -99,3 +99,7 @@ Still haven't figured out how to render in canvas mode (seems to be faster than 
 Seems to be a lot of handles to play around. But there's not enough documentation yet and the OSMD project is still very young. So I guess I'll live with it for the moment.
 
 As for **Heroku**, I'll find use for it sooner or later. Whatever dynamical/ dynamically generated content I'll delegate it to them.
+
+So I think a next step is to also make a small mid player alongside every MusicXML-export, and hopefully that will be covered in a future post.
+
+Let's stop here for this post 
