@@ -39,10 +39,15 @@ a site like the demo page [the first project](#testmidi).
 The static sites encodes the source into an url string. The reader upon loading the page will fetch from this url a dynamically generated midi file. Might increase inter-site traffic but it saves me from compiling an additional step! As long as it's free...XD
 Also while I'm at it maybe I'll do the same thing with switching from mathjax to Katex?
 
-Eventually, if I need to copy paste snippets from MuseScore I will
+Eventually, if I need to copy paste snippets from MuseScore I will have to devise some kind of translation software, but that is just heavy to implement...
 
 So I'll keep updating this post as the system slowly goes online.
 
 ### Implementation
 
-To be continued
+#### Heroku node.js server
+
+So first I sign in to Heroku and link to my github repo.
+Then I follow line-wise the [Tutorial](https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true):
+1. download, login to heroku CLI
+2. install node.js on my local machine with `sudo apt-get install nodejs` 
