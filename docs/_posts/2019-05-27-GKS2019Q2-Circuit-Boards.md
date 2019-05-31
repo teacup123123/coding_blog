@@ -11,7 +11,7 @@ The original question statement is [here](https://codingcompetitions.withgoogle.
 
 ### Restating the problem
 
-Arsh has an R-by-C circuit board of inhomogenious thickness, each of the $$R\timesC$$ cell has an integer thickness $$V_{r,c}$$. He wants to cut a subcircuit board from it which is rectangular and verify that the thickness of the thickest and thinnest cell is within a difference of K
+Arsh has an R-by-C circuit board of inhomogenious thickness, each of the $$R\times C$$ cell has an integer thickness $$V_{r,c}$$. He wants to cut a subcircuit board from it which is rectangular and verify that the thickness of the thickest and thinnest cell is within a difference of K
 
 An example:
 ```
@@ -145,7 +145,8 @@ for i in range(300*300*18*9*9):
 Took 8 seconds! That should do the job!
 ### Implementation
 
-Here is the code so far.
+So I start off by writing a python iterator that does dichotomy in a general way,
+it returns besides the probing value two functions that are calleable and will tell the iterator to go up or down, the user should call `higher()` or `lower()` wisely depending on the situation. This code is salvagable for future problems
 ```python
 import numpy as np
 import itertools
@@ -165,8 +166,13 @@ def dechotomy(sizeGoal):
 
     while True:
         mid = (low + high) // 2
-        return mid, lower, higher
+        yield mid, lower, higher
+```
 
+Now, we process the inputs.
+{% include GCJ_caseT.html %}
+
+```python
 # main contest body
 t = int(input())
 for ti in range(1, t + 1):
@@ -176,7 +182,12 @@ for ti in range(1, t + 1):
         grid.append(list(map(int, input().split())))
     grid = np.array(grid, dtype=int)
     # variables now all loaded
+```
 
+Now that we have loaded the problem into a 2D array, we may begin precaching.
+By using numpy (based on C), I hope that I can gain a bit of speed. Although here it is not important, the bottleneck is the number of queries.
+
+```python
     #dynamical program used to precalculate lookups of size 2^I x 2^J
     _ = []
     for operation in [np.max, np.min]:
@@ -198,7 +209,11 @@ for ti in range(1, t + 1):
             precache_max_or_min[:, :, i + 1, :] = temp
         _.append(precache_max_or_min)
     precache_max, precache_min = _
+```
+The two variables `precache_max`, `precache_min` should now contain queries of size 2^Ix2^J. Note that by using roll, I am summing in a cylindrical fashion. It is up to the caller to be responsible for not specifying a range that goes out of range.
 
+Now we implement lookups of any arbitrary size, which returns true or false depending on whether the k-limit is surpassed.
+```python
     # The actual lookup for any sizes
     def lookup(xlow, xhigh, ylow, yhigh):
         szx = xhigh - xlow
@@ -233,13 +248,45 @@ for ti in range(1, t + 1):
         else:
             return False
 
-
-    for sz, lower, higher in dechotomy(r * c):
-        xlow, xhigh = 0, 1
-        ylow, yhigh = 0, 1
-        found = None
-        # double caterpiller to be continued
-
-    answer = ''
-    print('Case #{}: {}'.format(ti, answer))
 ```
+### Realization of a big error
+
+The algorithm doesn't work. For each pair `(xlow, xhigh)`, we can indead find in
+ $$ 300*\log(300)^2$$ time the corresponding optimal `(ylow,yhigh)` pair that maximizes the surface.
+ Suppose that we suspect that an optimum exist at $$S_{optimal}$$ (near the end of the dechotomy), for example, we found a rectangle of size $$S_{optimal}-1$$, and failed to find one at $$S_{optimal}+1$$, there is still no way to determine whether to do `xlow+=1` or `xhigh-=1` halfway through the iteration.
+
+### Another clever idea
+
+So we have been having big headaches over the 2D aspect, and not being able to control the second caterpiller. Actually I was bound by my deep thought. We could have simply sorted all pixels into a 1D array by thickness.
+
+```
+L = [(v_ij,i,j)...]#sorted in increasing order
+```
+
+ I have a hunch that I can then perform the caterpiller algorithm over this 1D array of size $$300^2$$.
+
+ Let's suppose that a valid rectangle [a:b]x[c:d] exists with min,max = m,M. This statement is equivalent to saying that the leftward (of m) and the rightward (of M) doesn't have any pixel inside that rectangle
+
+ OK I now have an idea for constructing an algo:
+ ```
+For all locally maximal caterpiller pairs (I,J)
+such that abs(L[I][0]-L[J][0])<=k:
+  #complexity is now 300^2
+
+
+  #Find the biggest rectangle that is valid,
+  #using dechotomy of the four boundaries
+  For all possible 4 boundaries:
+    # complexity multiplied by log(300)^4
+
+    check validity
+    # multiplied by log(300)^2
+ ```
+
+ In total the complexity should be $$\log(300)^6 * 300^2 = 47829690000 $$ that's still too big.
+
+ I think the dichotomy is a waste of time. Actually what you can do is follow along the caterpiller. The thinnest pixel to be newly engulfed by the complementary of the catepiller range can only make an already valid rectangle smaller and by how much can be answered in `O(1)` time: just see if the included pixel falls in the rectangle!
+
+ The new pixel that is released from the complementary into the caterpiller is more problematical if it is outside the rectangle. The rectangle can be bigger, in the direction of the pixel, the worst case we will have to do dichotomy over two of the four boundaries. Therefore speeding it up by ~100X
+
+ What is better is that Actually it is never both boundaries at the same time, so this speeds it again by 5X. OK, Enough blah blah:
