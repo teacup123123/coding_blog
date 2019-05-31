@@ -3,6 +3,9 @@ layout: default
 comments: true
 ---
 
+
+
+
 <small>{{ page.date | date: "%-d %B %Y" }}
 by {{ page.author | default: site.author }}</small>
 <h1>{{ page.title }}</h1>
@@ -29,6 +32,14 @@ by {{ page.author | default: site.author }}</small>
 
 {% if page.tags %}
   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+{% endif %}
+
+
+{% if page.tags contains 'music' %}
+<script src={{ "/assets/js/opensheetmusicdisplay.min.js"| relative_url }}>
+</script>
+<script src={{"/assets/js/musicSheetRender.js" | relative_url}}>
+</script>
 {% endif %}
 
 {% include disqus.html %}

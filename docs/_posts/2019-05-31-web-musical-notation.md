@@ -50,4 +50,8 @@ So I'll keep updating this post as the system slowly goes online.
 So first I sign in to Heroku and link to my github repo.
 Then I follow line-wise the [Tutorial](https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true):
 1. download, login to heroku CLI
-2. install node.js on my local machine with `sudo apt-get install nodejs` 
+2. install node.js on my local machine with `sudo apt-get install nodejs`
+3. clone the sample heroku node.js minimalistic app.
+4. `heroku local web` to see the app running locally
+5. `heroku create` if never done before.
+6. rinse and repeat coding and deployment `git push heroku master` 
