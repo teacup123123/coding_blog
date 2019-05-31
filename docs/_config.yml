@@ -1,6 +1,6 @@
 title: Be My Rubber Duck by Titicat
 logo: /assets/img/nuko.jpg
-description: Music/Coding contests/Games. Random projects!
+description: Projects on Music/Coding contests/Games
 github_username:  teacup123123
 baseurl: "/" # the subpath of your site, e.g. /blog/
 url: "http://teacup123123.github.io/coding_blog" # the base hostname & protocol for your site

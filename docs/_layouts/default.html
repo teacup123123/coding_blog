@@ -25,11 +25,9 @@
           <img src="{{ site.logo | relative_url}}" alt="Logo" height="200" width="200"/>
         {% endif %}
 
-        <p><a href = "{{ "/about/" | relative_url }}">About this site: </a>{{ site.description | default: site.github.project_tagline }}</p>
+        <p><a href = "{{ "/about/" | relative_url }}">About this site</a> @ <a href="{{ site.github.repository_url }}">GitHub</a>:
+          </br>{{ site.description | default: site.github.project_tagline }}</p>
 
-        {% if site.github.is_project_page %}
-        <p class="view"><a href="{{ site.github.repository_url }}">View the Project on GitHub <small>{{ site.github.repository_nwo }}</small></a></p>
-        {% endif %}
 
         {% if site.github.is_user_page %}
         <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
@@ -49,10 +47,10 @@
 
       </section>
       <footer>
-        <p><small>*Credit of resources to the
-          <a href="{{"/attribution" | relative_url}}">original authors</a>
+        <p><small>
+          Some resources credited to the original 
+          <a href="{{"/attribution" | relative_url}}">authors</a>
         </small></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>

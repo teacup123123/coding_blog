@@ -1,4 +1,8 @@
-# node-js-getting-started
+# About the blog
+Visit [the site](https://teacup123123.github.io/coding_blog/). All rights reserved for blog content(under `_posts`). No rights claimed for the code.
+
+# About the dynamical content generation on Heroku
+## node-js-getting-started
 
 A barebones Node.js app using [Express 4](http://expressjs.com/).
 
