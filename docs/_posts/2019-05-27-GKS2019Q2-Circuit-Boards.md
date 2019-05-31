@@ -289,4 +289,6 @@ such that abs(L[I][0]-L[J][0])<=k:
 
  The new pixel that is released from the complementary into the caterpiller is more problematical if it is outside the rectangle. The rectangle can be bigger, in the direction of the pixel, the worst case we will have to do dichotomy over two of the four boundaries. Therefore speeding it up by ~100X
 
- What is better is that Actually it is never both boundaries at the same time, so this speeds it again by 5X. OK, Enough blah blah:
+ What is better is that Actually it is never both boundaries at the same time, so this speeds it again by 5X.
+
+ Implementing it, I noticed that the pixel leaving the catepiller into the boundary can break a valid rectangle into two valid rectangles of equal size. Which one should we choose? The reverse is true, for a pixel leaving the complementary, it is absolutely possible that the biggest rectangle can jump (have no overlap at all). So once again it is wrong to assume following the caterpiller would work. Surely there must be a way!?
