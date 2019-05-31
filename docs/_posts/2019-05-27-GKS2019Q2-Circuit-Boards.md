@@ -291,4 +291,4 @@ such that abs(L[I][0]-L[J][0])<=k:
 
  What is better is that Actually it is never both boundaries at the same time, so this speeds it again by 5X.
 
- Implementing it, I noticed that the pixel leaving the catepiller into the boundary can break a valid rectangle into two valid rectangles of equal size. Which one should we choose? The reverse is true, for a pixel leaving the complementary, it is absolutely possible that the biggest rectangle can jump (have no overlap at all). So once again it is wrong to assume following the caterpiller would work. Surely there must be a way!?
+ Implementing it, I noticed that the pixel leaving the catepiller into the boundary can break a valid rectangle into two valid rectangles of equal size. Which one should we choose? The reverse is true, for a pixel leaving the complementary, it is absolutely possible that the biggest rectangle can jump (have no overlap at all with the old one). So once again it is wrong to assume following the caterpiller would work. Surely there must be a way!?
