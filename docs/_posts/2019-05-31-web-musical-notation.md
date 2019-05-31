@@ -4,7 +4,7 @@ title: "Efficiently blog about music, generating .MID and sheet"
 author: Tikai Chang
 tags: ["music","js","midi"]
 comments: true
-status: "working"
+status: "done"
 ---
 
 Browsing the web, something occured to me.
@@ -54,4 +54,48 @@ Then I follow line-wise the [Tutorial](https://devcenter.heroku.com/articles/get
 3. clone the sample heroku node.js minimalistic app.
 4. `heroku local web` to see the app running locally
 5. `heroku create` if never done before.
-6. rinse and repeat coding and deployment `git push heroku master` 
+6. rinse and repeat coding and deployment `git push heroku master`
+
+#### Messed around and changed direction
+
+I messed around and found [this demo](https://opensheetmusicdisplay.github.io/demo/). It claims to be able to render musicxml files. I fiddled around and managed to integrate it into this blog. Here is a first imperfect [example blog post]({{ site.baseurl }}{% post_url 2019-05-31-Zettai-Zetsumei %}).
+
+So if you want to dwelve into how it was done. basically I digged into their [wiki-page](https://github.com/opensheetmusicdisplay/opensheetmusicdisplay/wiki)
+
+So the coding style that I settled upon is the following liquid syntax
+
+```
+{% include stubmusic.html
+  src = "190531-zz/Zettai_Zetsumei_by_Coe_shu_Nie.xml"
+  zoom = 0.2
+  %}
+```
+So I will keep all the music-xml files in a visible-data folder, and the included html snippet will be in charge of formatting the source file url correctly.
+
+Finally
+```javascript
+var list = document.getElementsByClassName("stubmusic");
+
+for (var i = 0; i < list.length; i++) {
+  var container = list[i];
+  var osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container);
+  var src = container.getAttribute('src');
+  var zoom = container.getAttribute('zoom');
+  osmd.load(src);
+  osmd.zoom = parseFloat(zoom);//Doesn't work :(
+  osmd.setOptions({
+    drawTitle: false,
+    drawCredits: false,
+    drawComposer: false,
+    // drawPartNames: false,
+    // drawLyricist: false
+  })
+  osmd.render();
+}
+```
+
+Still haven't figured out how to render in canvas mode (seems to be faster than svg on the demo site), nor have I figured out how to adjust the zoom, it seems a little big for my taste. Also the disabling of Part names and Lyricist names doesn't remove the space intented for them. So you have this awkward space standing out of nowhere.
+
+Seems to be a lot of handles to play around. But there's not enough documentation yet and the OSMD project is still very young. So I guess I'll live with it for the moment.
+
+As for **Heroku**, I'll find use for it sooner or later. Whatever dynamical/ dynamically generated content I'll delegate it to them.
