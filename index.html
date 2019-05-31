@@ -19,6 +19,9 @@ Latest blog posts
       {% elsif post.status == 'working' %}
       <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
       {% endif %}
+      {% if post.tags contains 'music' %}
+      <img src="{{ "/assets/img/musical-note.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+      {% endif %}
     </h3>
   </a>
   <p> | Posted {{ post.date | date_to_string }} | <b>Tags</b>:

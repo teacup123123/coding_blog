@@ -19,7 +19,11 @@ by {{ page.author | default: site.author }}</small>
   {% elsif page.status == 'working' %}
   <b>workin' on it</b>
   <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
-  {% endif %}</p>
+  {% endif %}
+  {% if page.tags contains 'music' %}
+  <img src="{{ "/assets/img/musical-note.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+  {% endif %}
+  </p>
 
 {{content}}
 
