@@ -14,14 +14,24 @@ by {{ page.author | default: site.author }}</small>
 <p class="view">
   Status:
   {% if page.status == "hold" %}
-  <b>question/project put on hold</b>
-  <img src="{{ "/assets/img/clock.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+    <b>question/project put on hold</b>
+    <img src="{{ "/assets/img/clock.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
   {% elsif page.status == 'done' %}
-  <b>question/project completed</b>
-  <img src="{{ "/assets/img/checked.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+    <b>question/project completed</b>
+    <img src="{{ "/assets/img/checked.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
   {% elsif page.status == 'working' %}
-  <b>workin' on it</b>
-  <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+    <b>workin' on it</b>
+    <img src="{{ "/assets/img/cogwheel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
+  {% elsif page.status == 'canceled' %}
+    <b>Project canceled/better solution found</b>
+    {% if page.betterid %}
+      {% for post in site.posts %}
+        {% if post.id == page.betterid %}
+          <b><a href="{{ post.url | relative_url }}">here </a></b>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    <img src="{{ "/assets/img/cancel.svg" | relative_url}}" alt="Logo" height="20" width="20"/>
   {% endif %}
   {% if page.tags contains 'music' %}
   <img src="{{ "/assets/img/musical-note.svg" | relative_url}}" alt="Logo" height="20" width="20"/>

@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "Google Kick Start 2019 Round C Q2 Circuit Boards"
+title: "Google Kick Start 2019 Round C Q2 Circuit Boards [given up]"
 author: Tikai Chang
 tags: ["GKS", "competition", "python"]
 comments: true
-status: "working"
+status: "canceled"
+betterid: "/2019/06/01/Circuit-Boards-Better"
 ---
 
 The original question statement is [here](https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050ff2/0000000000150aae)
@@ -292,3 +293,19 @@ such that abs(L[I][0]-L[J][0])<=k:
  What is better is that Actually it is never both boundaries at the same time, so this speeds it again by 5X.
 
  Implementing it, I noticed that the pixel leaving the catepiller into the boundary can break a valid rectangle into two valid rectangles of equal size. Which one should we choose? The reverse is true, for a pixel leaving the complementary, it is absolutely possible that the biggest rectangle can jump (have no overlap at all with the old one). So once again it is wrong to assume following the caterpiller would work. Surely there must be a way!?
+
+Let us revisit what we saw: without sorting pixels we were able to transform iteration of one of the two dimensions from 300^2 to 300*log(300). But the other dimension was stuck at 300^2. Then we did pixelization unidimensionalification, shrinking complexity from 300^4 to 300^2. This is without taking into account the query time.
+
+#### Eureka moment
+
+Oh god I just realized something, the number of caterpiller pairs is actually extremely low. since the thicknesses vary from 1~1000. It means that the there are at most 2000 caterpiller pairs... For each caterpiller pair, you have a fixed thickness range, so you transformed your question as follows:
+```
+given a boolean array 300x300 representing "isInRange?"
+find the biggest area of a contingous rectangle
+```
+
+Actually, swapping the `min`, `max` operation in the dynamical programming by `and`, you can precache the question "Is this the top left corner of a 2^t sized square?" From which you can construct a quick query of $$log(300)^2$$. I believe that some more complicated construction might let you construct answers to the query: what is the biggest rectangle whose top right corner is you? And I believe it can be done in a single log(300) passage...
+
+The overall complexity will be `2000*(300^2*log(300))`.
+
+But I think I already surpassed too much the thinking time for this question. I should probably just give up and look at the answer...
