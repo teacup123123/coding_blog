@@ -7,7 +7,7 @@ comments: true
 status: "done"
 ---
 
-Just started learning Golang. For people who knows a bit programming here is what I recommend:
+Just started learning Golang. For people who knows already quite a few programming languages here is what I recommend:
 1. Set up an IDE, SDK. Since I am still in an institution with access to .edu mail adress, I recommend JetBrain's Goland. Under Ubuntu, just grap it in the app store and it is installed as a snap image. Then upon creating the first project you can grab an SDK. And that's all! People says that Goland uses Dwelve and not gdb, avoiding some debugger issues.
 2. Take the [Tour](https://tour.golang.org/welcome/1) of Golang. A bit intimidating with little Gopher staring at you at all times. But hey they are shy creatures that *panic* and *recover* and handles concurrency well. Cool language!
 3. Read the [document](https://golang.org/doc/effective_go.html) which kind of explains again in more detail subjects covered in the Tour.
