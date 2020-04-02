@@ -5,17 +5,10 @@ import matplotlib.pyplot as pl
 
 def new_proba(sz):
     probas = []
-    # probas.append(rd.random(sz) * 0.5)
-    # probas.append(rd.random(sz) * 0.2)
-    # probas.append(rd.random(sz) * 0.1)
-    # probas.append(rd.random(sz) * 0.05)
-    # probas.append(rd.random(sz) * 0.01)
-    # probas.append(rd.random(sz) * 0.01)
-    # probas.append(np.ones(sz) * 0.5)
-    probas.append(np.ones(sz) * 0.1)
-    probas.append(np.ones(sz) * 0.04)
-    probas.append(np.ones(sz*5) * 0.005)
-    probas.append(np.ones(sz*10) * 0.001)
+    probas.append(np.ones(sz) * 0.33)  # Bnei Brak tests, high risks
+    probas.append(np.ones(sz) * 0.1)  # Tel Avivan tests, medium risks
+    probas.append(np.ones(sz) * 0.04)  # American tests
+    probas.append(np.ones(sz * 10) * 0.005)  # Taiwanese tests
     return np.concatenate(tuple(probas))
 
 
@@ -47,9 +40,9 @@ while entropy(probas) > 0:
     sorted_i = np.argsort(probas)
     sorted_i = list(sorted_i)
     sorted_i = list(filter(lambda i: entropy_unit(probas[i]) > 0, sorted_i))
-    print(f'remaining patients to test {len(sorted_i)} rounds + entropy = {entropy(probas) + rounds}')
+    # print(f'remaining patients to test {len(sorted_i)} rounds + entropy = {entropy(probas) + rounds}')
     sublist = []
-    while np.product(1 - probas[sublist]) > 0.55 and len(sorted_i) > 0:
+    while np.product(1 - probas[sublist]) > 0.5 and len(sorted_i) > 0:
         if len(sorted_i) > 0:
             sublist.append(sorted_i.pop(0))
     # assert is_approximately_the_same(entropy(sublist), 1)
@@ -58,12 +51,13 @@ while entropy(probas) > 0:
     if result:
         # update the probabilities on the sublist, conditioned on the result being positive
         infected = list(filter(lambda i: answer[i], sublist))
-        print(f'\t{sublist}({infected} infected):{probas[sublist]} -> {probas[sublist] / np.sum(probas[sublist])}')
+        # print(f'\t{sublist}({infected} infected):{probas[sublist]} -> {probas[sublist] / np.sum(probas[sublist])}')
+        print(f'\tPOSITIVE {len(sublist)} tested ({len(infected)} )!')
         probas[sublist] = probas[sublist] / np.sum(probas[sublist])  # first order
         positive_clusters.append(sublist)
     else:
         # All in the sublist are all safe
-        print(f'\t{sublist} -> {0}')
+        print(f'\tNEGATIVE {len(sublist)} tested')
         for c in positive_clusters:
             for s in sublist:
                 if s in c:
@@ -77,7 +71,7 @@ while entropy(probas) > 0:
 
         probas[sublist] = 0
 
-print(f'sanity check: {np.product(answer == probas)}')
+print(f'sanity check: {"ALL GOOD" if np.product(answer == probas) else "ERROR"}')
 print(f'speedup:{len(probas) / rounds}')
 pl.plot(entropies)
 pl.show()
