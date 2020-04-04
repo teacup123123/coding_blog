@@ -21,7 +21,7 @@ In this case, the *marginal* (i.e. per single run of the experiment) Cost (unit:
 ### Defining properly an Algorithm for Pooled Testing (APT)
 Let us give the specs of a deterministic algorithm on Pooled Testing:
 - It takes as input, a known probability vector P discribing the probability of each individual (labeled i=1~N) to be tested.
-- In a deterministic manner, it outputs a subset of the labels of the individuals to be included in the next pool. And it patiently wait for you to perform that test and await your input of the result.
+- In a deterministic manner and according to the previous input(s), it outputs a subset of the labels of the individuals to be included in the next pool. And it patiently wait for you to perform that test and await your input of the result.
 - The previous step is repeated many times, after that it outputs a boolean vector declaring who is infected and who is not.
 - Correctness requirement: On the assumption that there are no false positives/negatives inputed to the algorithm, each individual declared as negative have participated at least in one negative pool. Each individual indicated as positive have not been tested negative and has participated in a pool in which all others are declared neagative. The log of the interaction should be coherent and each input must be in accordance to the OR result of each participents' declaration.
 
