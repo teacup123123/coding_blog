@@ -4,7 +4,7 @@ title: Covid 19 Pooled Diagnosis
 author: Tikai Chang
 tags: [algorithm]
 comments: true
-status: "working"
+status: "done"
 ---
 full story [Part I here](https://medium.com/@teacup123123/the-benefits-and-limits-of-pooled-screening-and-how-it-can-accelerate-covid-19-screening-part-1-2-6bf11dd7def6) and 
 [Part II here](https://medium.com/@teacup123123/the-benefits-and-limits-of-pooled-screening-and-how-it-can-accelerate-covid-19-screening-part-2-2-3278af7ecbc7)
@@ -41,6 +41,6 @@ From the point of view of the APT algorithm, the interaction it sees is identica
 
 We have thus realized a compression algorithm on Boolean Tuples described by any probabilty P. According to the theorem stated above the size of the message should be smaller than the entropy. We just prooved that the number of boolean inputs (each corresponding to a COVID19 testing pool) must be inferior to the Shannon Entropy. CQED.
 
-### Illustrative use of the reduction process
+### Illustrative use of the reduction process to be exploited in a real life comms scenario, **Rien Ne l'empêche!**
 
 Say that we wish to compress statistics on a battlefield continuously to the Central Command. We know that the first variable indicates the weather: sunny/cloudy (In England that's 10-90 chance...). The next 100 bits describes if the 100 soldiers in your battailion are operational or not. After some statistics you know that they are healthy, and the odds are 99-01. You can compress using the APT algorithm taking as parameter the probability list 0.1,0.99,0.99 .... 
