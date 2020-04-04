@@ -39,3 +39,7 @@ Decompression works trivially, the only difference being we read the interaction
 From the point of view of the APT algorithm, the interaction it sees is identically distributed to a scenario where COVID19 pooled testing is being done. It can not guess that you were actually using it to compress a variable over the internet...
 
 We have thus realized a compression algorithm on Boolean Tuples described by any probabilty P. According to the theorem stated above the size of the message should be smaller than the entropy. We just prooved that the number of boolean inputs (each corresponding to a COVID19 testing pool) must be inferior to the Shannon Entropy. CQED.
+
+### Illustrative use of the reduction process
+
+Say that we wish to compress statistics on a battlefield continuously to the Central Command. We know that the first variable indicates the weather: sunny/cloudy (In England that's 10-90 chance...). The next 100 bits describes if the 100 soldiers in your battailion are operational or not. After some statistics you know that they are healthy, and the odds are 99-01. You can compress using the APT algorithm taking as parameter the probability list 0.1,0.99,0.99 .... 
