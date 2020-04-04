@@ -37,7 +37,7 @@ We write the following program to compress a N-Tuple Boolean Variable whose sub-
 
 Decompression works trivially, the only difference being we read the interaction log received and input the yes/no to the pools asked accordingly. Since the APT algorithm is supposedly deterministic, the interaction sequence is identical to compression. Finally, we take the declaration as the decompressed original message.
 
-From the point of view of the APT algorithm, the interaction it sees is identically distributed to a scenario where COVID19 pooled testing is being done. It can not guess that you were actually using it to compress a variable over the internet...
+From the point of view of the APT algorithm, the interaction it sees is identically distributed to a scenario where COVID19 pooled testing is being done according to a P probabiltity. It can not guess that you were actually using it to compress a variable over the internet...
 
 We have thus realized a compression algorithm on Boolean Tuples described by any probabilty P. According to the theorem stated above the size of the message should be smaller than the entropy. We just prooved that the number of boolean inputs (each corresponding to a COVID19 testing pool) must be inferior to the Shannon Entropy. CQED.
 
